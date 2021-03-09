@@ -10,6 +10,12 @@ exports.create = (req, res) => {
     
     order.save()
       .then((data) => {
+        User.findByIdAndUpdate(req.body.user,{orders: data._id}).then(()=>{
+        res.send({
+            data: data,
+        })
+        .catch((err) => res.send(err));
+         })
         res.send({
           order: data,
           created: true
