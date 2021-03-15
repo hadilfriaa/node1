@@ -57,3 +57,43 @@ exports.getProduct = (req, res) => {
     }
   );
 };
+
+
+exports.modifyProduct = (req, res, next) => {
+    const product = new Product({
+      _id: req.params.id,
+      title: req.body.title,
+      description: req.body.description,
+      imageUrl: req.body.imageUrl,
+      price: req.body.price
+        });
+    Product.updateOne({_id: req.params.id}, product).then(
+      () => {
+        res.status(201).json({
+          message: 'Product updated successfully!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+};
+
+exports.deleteProduct = (req, res, next) => {
+  Product.deleteOne({_id: req.params.id}).then(
+    () => {
+      res.status(200).json({
+        message: 'Product deleted successfully !'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
