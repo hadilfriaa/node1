@@ -11,8 +11,10 @@ exports.create = (req, res) => {
     const user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      telephone: req.body.telephone,
       email: req.body.email,
       password: hashedPassword,
+      IsAdmin: req.body.IsAdmin,
     });
   
     user
@@ -82,4 +84,49 @@ exports.login = (req, res) => {
                 .catch(error => res.status(500).json({ error }))
         })
         .catch(error => res.status(500).json({error}))
-}
+};
+
+
+
+exports.modifyUser = (req, res, next) => {
+    const user = new User({
+      _id: req.params.id,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      telephone: req.body.telephone,
+      email: req.body.email,
+      password: req.body.password,
+      IsAdmin: req.body.IsAdmin,
+    });
+    User.updateOne({_id: req.params.id}, user).then(
+      () => {
+        res.status(201).json({
+          message: 'User updated successfully!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  
+};
+
+exports.deleteUser = (req, res, next) => {
+  User.deleteOne({_id: req.params.id}).then(
+    () => {
+      res.status(200).json({
+        message: ' User deleted successfully!'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+
+};

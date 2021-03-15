@@ -2,10 +2,12 @@ const Joi = require('joi');
 
 const userValidation = (req,res,next) =>{
     const userValidationSchema = Joi.object({
-        firstName: Joi.string().regex(/^[A-Z]+$/).uppercase().required(),
-        lastName: Joi.string().regex(/^[A-Z]+$/).uppercase().required(),
+        firstName: Joi.string().uppercase().required(),
+        lastName: Joi.string().uppercase().required(),
+        telephone: Joi.number().required(),
         email: Joi.string().email().required(),
         password: Joi.string().required(),
+        IsAdmin: Joi.boolean(),
     });
 
     const validation = userValidationSchema.validate(req.body);

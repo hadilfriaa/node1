@@ -12,6 +12,10 @@ const userSchema = new Schema({
         required: true,
         lowercase: true
     },
+    telephone:{
+        type: Number,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -22,7 +26,27 @@ const userSchema = new Schema({
         required: true,
         minlength: 4,
         unique: true
-    }
-})
+    },
+    IsAdmin: {
+        type: Boolean,
+        default: false
+    },
+    Address:[ {
+        address: { 
+            type: String 
+        } ,
+        ville: {
+            type: String
+        },
+        cp: {
+            type: Number
+        },
+        pays: {
+          type: String
+        },
+       // required: true
+        }
+    ]   
+});
 
 module.exports = mongoose.model('User', userSchema);
