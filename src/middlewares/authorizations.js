@@ -1,19 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-//module.exports = (req, res, next) => {
-//    try {
-//        const token = req.headers.authorization ;
-//        const decodToken = jwt.verify(token, 'supersecret');
-//        const userId = decodToken.userId
-//        if (req.body.userId && req.body.userId!==userId) {
-//            throw 'user not valid';
-//        } else {
-//            next();
-//        }
-//    } catch (error) {
-//        res.status(401).json({error: error})
-//    }
-//};
+
 function auth(req, res, next) {
     let token = req.headers.authorization;
     console.log(token);
@@ -38,3 +25,4 @@ function auth(req, res, next) {
     
 }
 module.exports = auth;
+

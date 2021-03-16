@@ -23,6 +23,7 @@ exports.create = (req, res) => {
         let userToken = jwt.sign(
           {
             id: data._id,
+            IsAdmin: data.IsAdmin,
           },
           'supersecret',
           {
@@ -73,7 +74,9 @@ exports.login = (req, res) => {
                     res.status(200).json({
                         userId: user._id,
                         token: jwt.sign(
-                            { userId: user._id },
+                            { 
+                              userId: user._id
+                            },
                             'supersecret',
                             { expiresIn: 86400 },
                         
@@ -129,4 +132,20 @@ exports.deleteUser = (req, res, next) => {
     }
   );
 
+};
+
+
+exports.getAllUser = (req, res) => {
+  User.find()
+  .then(
+    (Users) => {
+      res.status(200).json(Users);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };
