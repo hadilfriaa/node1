@@ -14,13 +14,14 @@ const ProductSchema = new Schema({
         type: String, 
         required: true 
     },
-    price: { type: Number, 
+    price: { 
+        type: Number, 
         required: true 
     },
-
-    //userId: { type: String, 
-    //    required: true 
-    //},
+    category: { 
+        type: String, 
+        required: true 
+    },
     
 })
 
