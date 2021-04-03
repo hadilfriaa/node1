@@ -5,7 +5,8 @@ exports.create = (req, res) => {
         title: req.body.title,
         description: req.body.description,
         imageUrl: req.body.imageUrl,
-        price: req.body.price
+        price: req.body.price,
+        category: req.body.category
     });
 
     product.save()
@@ -41,6 +42,23 @@ exports.getAllProduct = (req, res) => {
     );
 };
 
+exports.getProductCategory = (req, res) => {
+  Product.find({
+    category: req.params.category
+  })
+  .then(
+    (Products) => {
+      res.status(200).json(Products);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+
 
 exports.getProduct = (req, res) => {
   Product.findOne({
@@ -65,7 +83,8 @@ exports.modifyProduct = (req, res, next) => {
       title: req.body.title,
       description: req.body.description,
       imageUrl: req.body.imageUrl,
-      price: req.body.price
+      price: req.body.price,
+      category: req.body.category
         });
     Product.updateOne({_id: req.params.id}, product).then(
       () => {
