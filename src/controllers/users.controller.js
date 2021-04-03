@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 exports.create = (req, res) => {
 
  
-    console.log(req.body.password);
+    console.log(req.body);
     let hashedPassword = bcrypt.hashSync(req.body.password, 10);
   
     const user = new User({
@@ -14,6 +14,12 @@ exports.create = (req, res) => {
       telephone: req.body.telephone,
       email: req.body.email,
       password: hashedPassword,
+      address: {
+        rue: req.body.address.rue,
+        ville: req.body.address.ville,
+        cp: req.body.address.cp,
+        pays: req.body.address.pays
+      },
       IsAdmin: req.body.IsAdmin,
     });
   
@@ -97,8 +103,12 @@ exports.modifyUser = (req, res, next) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       telephone: req.body.telephone,
-      email: req.body.email,
-      password: req.body.password,
+      address: {
+        rue: req.body.rue,
+        ville: req.body.ville,
+        cp: req.body.cp,
+        pays: req.body.pays
+      },
       IsAdmin: req.body.IsAdmin,
     });
     User.updateOne({_id: req.params.id}, user).then(

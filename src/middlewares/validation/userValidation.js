@@ -7,6 +7,7 @@ const userValidation = (req,res,next) =>{
         telephone: Joi.number().required(),
         email: Joi.string().email().required(),
         password: Joi.string().required(),
+        address: Joi.object().required(),
         IsAdmin: Joi.boolean(),
     });
 

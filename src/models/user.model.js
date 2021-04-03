@@ -31,22 +31,27 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    Address:[ {
-        address: { 
-            type: String 
+    address: {
+        
+        rue: { 
+            type: String ,
+            required: true
         } ,
         ville: {
-            type: String
+            type: String,
+            required: true
         },
         cp: {
-            type: Number
+            type: Number,
+            required: true
         },
         pays: {
-          type: String
-        },
-       // required: true
+          type: String,
+          required: true
+          
         }
-    ]   
+       
+    } 
 });
 
 module.exports = mongoose.model('User', userSchema);
