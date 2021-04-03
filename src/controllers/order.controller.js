@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 };
 
 exports.getOrder = (req, res) => {
-    OOrder.findById(req.params.id)
+    Order.findById(req.params.id)
     .populate('products')
     .populate('user')
     .then(
@@ -45,7 +45,6 @@ exports.getOrder = (req, res) => {
       }
     );
   };
-
 
   exports.getAllOrder = (req, res) => {
     Order.find({
@@ -63,4 +62,23 @@ exports.getOrder = (req, res) => {
         });
       }
     );
+};
+
+exports.modifyOrder = (req, res, next) => {
+  const order = new Order({
+    status: req.body.status
+      });
+  Order.updateOne({_id: req.params.id}, order).then(
+    () => {
+      res.status(201).json({
+        message: 'Order updated successfully!'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };

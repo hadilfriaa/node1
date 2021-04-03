@@ -10,7 +10,10 @@ const OrderSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'user',
        required: true 
     },
-    products: [{ type: Schema.Types.ObjectId, ref: 'product' }]
+    products: [{ type: Schema.Types.ObjectId, ref: 'product' }],
+    status: {
+        type: String
+    }
 })
 
 module.exports = mongoose.model('Order', OrderSchema);
