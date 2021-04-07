@@ -21,16 +21,17 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    IsAdmin: {
+        type: Boolean,
+        default: false
+    },
     password: {
         type: String,
         required: true,
         minlength: 4,
         unique: true
     },
-    IsAdmin: {
-        type: Boolean,
-        default: false
-    },
+    
     address: {
         
         rue: { 

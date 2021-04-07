@@ -6,9 +6,9 @@ const userValidation = (req,res,next) =>{
         lastName: Joi.string().uppercase().required(),
         telephone: Joi.number().required(),
         email: Joi.string().email().required(),
+        IsAdmin: Joi.boolean(),
         password: Joi.string().required(),
         address: Joi.object().required(),
-        IsAdmin: Joi.boolean(),
     });
 
     const validation = userValidationSchema.validate(req.body);

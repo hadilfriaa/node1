@@ -13,6 +13,7 @@ exports.create = (req, res) => {
       lastName: req.body.lastName,
       telephone: req.body.telephone,
       email: req.body.email,
+      IsAdmin: req.body.IsAdmin,
       password: hashedPassword,
       address: {
         rue: req.body.address.rue,
@@ -20,7 +21,6 @@ exports.create = (req, res) => {
         cp: req.body.address.cp,
         pays: req.body.address.pays
       },
-      IsAdmin: req.body.IsAdmin,
     });
   
     user
