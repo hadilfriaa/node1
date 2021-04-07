@@ -5,12 +5,12 @@ const auth = require('../middlewares/authorizations');
 
 
 
-router.get('/products/:id', product.getProduct);
 
 //Admin
 
 router.post('/products', product.create);
 router.get('/productsall', product.getAllProduct);
+router.get('/products/:id', product.getProduct)
 router.post('/products/update/:id', product.modifyProduct);
 router.get('/products/delete/:id', product.deleteProduct);
 

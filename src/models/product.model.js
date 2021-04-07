@@ -21,8 +21,11 @@ const ProductSchema = new Schema({
     category: { 
         type: Schema.Types.ObjectId, ref: 'category',
         required: true 
- }
-    
+    },
+    favoris:{
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = mongoose.model('Product', ProductSchema);
