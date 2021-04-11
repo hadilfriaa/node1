@@ -52,7 +52,8 @@ const userSchema = new Schema({
           
         }
        
-    } 
+    },
+    orders: [ { type: Schema.Types.ObjectId, ref: 'Order'}]
 });
 
 module.exports = mongoose.model('User', userSchema);
