@@ -1,9 +1,6 @@
 const Category = require('../models/category.model');
 const Product = require('../models/product.model');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const Joi = require('joi');
-const { boolean } = require('joi');
+
 
 exports.create = (req, res) => {
 
@@ -40,7 +37,7 @@ exports.create = (req, res) => {
 
 exports.getProductInCategory = (req, res) => {
   Category.findById(req.params.id)
-  .populate('products') // a tester sans s
+  .populate('products') 
   .then((data) => {
     if (!data) {
       return res.status(404).send({
@@ -57,6 +54,7 @@ exports.getProductInCategory = (req, res) => {
   }
 );
 };
+
 
 exports.getAllCategory = (req, res) => {
     Category.find()
@@ -97,4 +95,19 @@ exports.modifyCategory = (req, res, next) => {
   );
 };
 
+exports.deleteCategory = (req, res, next) => {
+  Category.deleteOne({_id: req.params.id}).then(
+    () => {
+      res.status(200).json({
+        message: 'Category deleted successfully !'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
 
