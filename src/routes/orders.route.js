@@ -6,10 +6,12 @@ const { route } = require('./users.route');
 
 
 router.post('/orders', order.create);
-router.get('/order/:id', order.getOrder);
 
 //Admin
-router.get('/ordersAll', authAdmin,order.getAllOrder);
-router.post('/order/update', order.modifyOrder);
+//router.get('/ordersAll', authAdmin,order.getAllOrder);
+router.get('/ordersAll',authAdmin, order.getAllOrder);
+router.get('/order/:id', order.getOrder);
+
+router.post('/order/update/:id', order.modifyOrder);
 
 module.exports = router;
