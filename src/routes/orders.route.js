@@ -9,7 +9,7 @@ router.post('/orders', order.create);
 
 //Admin
 //router.get('/ordersAll', authAdmin,order.getAllOrder);
-router.get('/ordersAll',authAdmin, order.getAllOrder);
+router.get('/ordersAll', order.getAllOrder);
 router.get('/order/:id', order.getOrder);
 
 router.post('/order/update/:id', order.modifyOrder);

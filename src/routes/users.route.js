@@ -19,5 +19,5 @@ router.post('/users/login', user.login);
 router.post('/users/update/:id', user.modifyUser);
 router.get('/users/delete/:id',user.deleteUser);
 router.get('/usersall', user.getAllUser);
-router.get('/users/:id' , user.getUser);
+router.get('/users/:id' ,  user.getUser);
 module.exports = router;

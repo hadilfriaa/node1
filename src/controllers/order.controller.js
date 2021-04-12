@@ -59,7 +59,6 @@ exports.getOrder = (req, res) => {
     .populate('product')
     .then(
       (orders) => {
-        console.log("je suis la valid order");
         res.status(200).json(orders);
       }
     ).catch(
